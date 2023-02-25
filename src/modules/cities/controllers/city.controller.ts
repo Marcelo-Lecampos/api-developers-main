@@ -16,14 +16,14 @@ export class CityController {
 
   @Get(':id')
   async getById(@Param('id') id: number): Promise<CityEntity> {
-    return await this.cityService.findById(id);
+    return await this.cityService.findById(+id);
   }
 
   @Post('createAllCities')
   async createAllCities(): Promise<string> {
     try {
       const { data } = await axios.get(
-        'https://servicodados.ibge.gov.br/api/v1/localidades/municipios',
+        'http://servicodados.ibge.gov.br/api/v1/localidades/municipios',
       );
       const states = await this.stateService.getByAll();
 

@@ -29,10 +29,10 @@ export class CountryController {
   @Get('getById/:id')
   @UsePipes(new ValidationPipe())
   async getById(@Param('id') id: number): Promise<CountryEntity> {
-    if (!isNumber(id)) {
+    if (!isNumber(+id)) {
       throw new BadRequestException('FieldMustBeNumber');
     }
-    return await this.countryService.findById(id);
+    return await this.countryService.findById(+id);
   }
 
   @ApiOperation(doc.createCountry)
@@ -51,11 +51,11 @@ export class CountryController {
     @Param('id') id: number,
     @Body() updateCountryDto: UpdateCountryDto,
   ): Promise<CountryEntity> {
-    if (!isNumber(id)) {
+    if (!isNumber(+id)) {
       throw new BadRequestException('FieldMustBeNumber');
     }
     const countryUpdate = await this.countryService.updateCountry(
-      id,
+      +id,
       updateCountryDto,
     );
     return countryUpdate;
@@ -65,10 +65,10 @@ export class CountryController {
   @Delete(':id')
   @UsePipes(new ValidationPipe())
   async deleteById(@Param('id') id: number): Promise<string> {
-    if (!isNumber(id)) {
+    if (!isNumber(+id)) {
       throw new BadRequestException('FieldMustBeNumber');
     }
-    return await this.countryService.deleteCountry(id);
+    return await this.countryService.deleteCountry(+id);
   }
 
   @ApiOperation(doc.getByFilter)

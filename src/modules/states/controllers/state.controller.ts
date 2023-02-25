@@ -34,9 +34,9 @@ export class StateController {
   ): Promise<string> {
     try {
       const { data } = await axios.get(
-        'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+        'http://servicodados.ibge.gov.br/api/v1/localidades/estados',
       );
-      const country = await this.countryService.findById(country_id);
+      const country = await this.countryService.findById(+country_id);
 
       data.forEach((state: stateIGBE) => {
         const newState = {
