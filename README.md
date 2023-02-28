@@ -16,3 +16,6 @@
 ## Aplicação
 Disponibilizei uma documentação utilizando Swagger com a especificação `Openapi 3.0.0`, na rota /api-docs.
 #
+
+supabase e render
+anotar swal react

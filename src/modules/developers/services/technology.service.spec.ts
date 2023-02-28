@@ -114,6 +114,7 @@ describe('TechnologyService', () => {
       ]);
       expect(result).toEqual([TecnologyData, TecnologyData]);
     });
+
     it('deve retornar um erro de falha em cadastrar tecnologias no DB', async () => {
       mockTechnologyRepository.createManyTechnologies.mockRejectedValue(null); // null dispara erro de falha ao cadastrar
       await technologyService
