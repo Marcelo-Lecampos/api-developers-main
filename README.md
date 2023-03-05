@@ -44,6 +44,7 @@ Duas formas foram configuradas para uso no Projeto, escolha a que for mais conve
 1) Utilizar o comando `docker-compose up` para subir o container;
 2) Abra um novo terminal e utilize o comando `docker exec -it nest bash` para acessar o terminal do container;
 3) Agora pode utilizar os comandos que estão no [Realizando os testes 🧪](#Realizando-os-testes)
+4) Ao finalizar o uso basta dar o comando `docker-compose down` para desligar o container.
 ```
 
 #### 2) Manual 📝
@@ -72,10 +73,10 @@ $ npm run test
 # Testes Especificos:
 
 $ npm run test:dev
-^ realiza testes no developer service
+- realiza testes no developer service
 
 $ npm run test:tech
-^ realiza testes no technology service
+- realiza testes no technology service
 
 
 ```
@@ -86,8 +87,8 @@ $ npm run test:tech
 
 ## Mensagem Final 💭
 
-- Quero agradecer o professor Pedro por compartilhar um pouco do seu conhecimento 🙏
-- Agradecer ao projeto devinhouse e aos meus colegas 👥
+- Quero agradecer o professor Pedro por compartilhar um pouco do seu conhecimento 🙋‍♂️
+- Agradecer ao devinhouse e aos meus colegas 👥
 
 ## Licença 📄
 
