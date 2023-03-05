@@ -42,7 +42,7 @@ Duas formas foram configuradas para uso no Projeto, escolha a que for mais conve
 ```bash
 1) Utilizar o comando `docker-compose up` para subir o container;
 2) Abra um novo terminal e utilize o comando `docker exec -it nest bash` para acessar o terminal do container;
-3) Agora pode utilizar os comandos que estão no [Realizando os testes 🧪](#Realizando-os-testes)
+3) Agora pode utilizar os comandos que estão no "Realizando os testes 🧪"
 4) Ao finalizar o uso basta dar o comando `docker-compose down` para desligar o container.
 ```
 
