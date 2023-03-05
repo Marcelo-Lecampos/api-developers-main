@@ -2,10 +2,11 @@
 
 Este projeto foi desenvolvido durante o programa devinHouse no módulo de testes no backend. Nosso desafio foi criar testes utilizando o jest para os services de Developers e fazer a documentação utilizando o Swagger do Developers.
 
-Link para o projeto front-end:
+Links úteis:
 
 - [Deploy 🌐](https://api-developers-main.onrender.com)
-- [Swagger online 📖](https://api-developers-main.onrender.com/api-docs)
+- [Swagger no servidor 📖](https://api-developers-main.onrender.com/api-docs)
+- [Swagger local](http://localhost:3333/api-docs)
 
 Obs: Por estarem hospedados na tier gratuito do render, pode demorar alguns minutos no primeiro acesso . ⏳
 
@@ -61,6 +62,7 @@ Pré-requisitos:
 3) Utilizar o `.env_example` como base para o `.env` e colocar as suas configurações;
 4) Utilizar o comando `npm run migration:run` para criar as tabelas após a configuração das variáveis de ambiente no passo 3
 5) Utilizar o comando `npm run start:dev` para executar a aplicação no ambiente de desenvolvimento.
+
 ```
 
 ### Realizando os testes 🧪
