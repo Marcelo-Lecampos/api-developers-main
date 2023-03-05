@@ -9,6 +9,7 @@ describe('TechnologyService', () => {
   let technologyService: TechnologyService;
   let technologyRepository: TechnologyRepository;
 
+  // Define as funções de mock para todos os testes
   const mockTechnologyRepository = {
     getById: jest.fn(),
     getAll: jest.fn(),
@@ -34,6 +35,8 @@ describe('TechnologyService', () => {
     technologyRepository =
       module.get<TechnologyRepository>(TechnologyRepository);
   });
+
+  // BeforeEach comum para redefinir os mocks
   beforeEach(() => {
     mockTechnologyRepository.getById.mockReset();
     mockTechnologyRepository.getAll.mockReset();
@@ -56,12 +59,16 @@ describe('TechnologyService', () => {
     it('deve retornar uma tecnologia', async () => {
       mockTechnologyRepository.getById.mockReturnValue(TecnologyData); // null irá retornar um erro de tech n encontrada
       const result = await technologyService.findById(1);
+      expect(mockTechnologyRepository.getById).toBeCalledTimes(1);
+      expect(mockTechnologyRepository.getById).toBeCalledWith(1);
       expect(result).toEqual(TecnologyData);
     });
 
     it('deve retornar um erro de tecnologia não encontrada do tipo NotFoundException(technologyNotFound)', async () => {
       mockTechnologyRepository.getById.mockReturnValue(null); // null dispara erro de não encontrado
       await technologyService.findById(1).catch((err) => {
+        expect(mockTechnologyRepository.getById).toBeCalledTimes(1);
+        expect(mockTechnologyRepository.getById).toBeCalledWith(1);
         expect(err).toBeInstanceOf(NotFoundException);
         expect(err.message).toBe('technologyNotFound');
         expect(err.status).toBe(404);
@@ -76,6 +83,14 @@ describe('TechnologyService', () => {
       const result = await technologyService.createTechnology(
         createTechnologyDto,
       );
+      expect(mockTechnologyRepository.createTechnology).toBeCalledTimes(1);
+      expect(mockTechnologyRepository.createTechnology).toBeCalledWith(
+        createTechnologyDto,
+      );
+      expect(mockTechnologyRepository.getByName).toBeCalledTimes(1);
+      expect(mockTechnologyRepository.getByName).toBeCalledWith(
+        createTechnologyDto.name,
+      );
       expect(result).toEqual(TecnologyData);
     });
 
@@ -85,6 +100,11 @@ describe('TechnologyService', () => {
       await technologyService
         .createTechnology(createTechnologyDto)
         .catch((err) => {
+          expect(mockTechnologyRepository.createTechnology).toBeCalledTimes(0);
+          expect(mockTechnologyRepository.getByName).toBeCalledTimes(1);
+          expect(mockTechnologyRepository.getByName).toBeCalledWith(
+            createTechnologyDto.name,
+          );
           expect(err).toBeInstanceOf(BadRequestException);
           expect(err.message).toBe('entityWithArgumentsExists');
           expect(err.status).toBe(400);
@@ -96,6 +116,14 @@ describe('TechnologyService', () => {
       await technologyService
         .createTechnology(createTechnologyDto)
         .catch((err) => {
+          expect(mockTechnologyRepository.createTechnology).toBeCalledTimes(1);
+          expect(mockTechnologyRepository.createTechnology).toBeCalledWith(
+            createTechnologyDto,
+          );
+          expect(mockTechnologyRepository.getByName).toBeCalledTimes(1);
+          expect(mockTechnologyRepository.getByName).toBeCalledWith(
+            createTechnologyDto.name,
+          );
           expect(err).toBeInstanceOf(BadRequestException);
           expect(err.message).toBe('technologyNotSave');
           expect(err.status).toBe(400);
@@ -112,6 +140,13 @@ describe('TechnologyService', () => {
         createTechnologyDto,
         createTechnologyDto,
       ]);
+      expect(mockTechnologyRepository.createManyTechnologies).toBeCalledTimes(
+        1,
+      );
+      expect(mockTechnologyRepository.createManyTechnologies).toBeCalledWith([
+        createTechnologyDto,
+        createTechnologyDto,
+      ]);
       expect(result).toEqual([TecnologyData, TecnologyData]);
     });
 
@@ -120,6 +155,12 @@ describe('TechnologyService', () => {
       await technologyService
         .createManyTechnologies([createTechnologyDto, createTechnologyDto])
         .catch((err) => {
+          expect(
+            mockTechnologyRepository.createManyTechnologies,
+          ).toBeCalledTimes(1);
+          expect(
+            mockTechnologyRepository.createManyTechnologies,
+          ).toBeCalledWith([createTechnologyDto, createTechnologyDto]);
           expect(err).toBeInstanceOf(BadRequestException);
           expect(err.message).toBe('entityWithArgumentsExists');
           expect(err.status).toBe(400);

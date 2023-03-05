@@ -91,17 +91,19 @@ describe('DeveloperService', () => {
       const developer = DeveloperStatic.developerData();
       mockDevRepository.getById.mockReturnValue(developer);
       const foundDeveloper = await developerService.findById(developer.id);
-      expect(foundDeveloper).toMatchObject({ id: developer.id });
       expect(mockDevRepository.getById).toHaveBeenCalledTimes(1);
+      expect(mockDevRepository.getById).toHaveBeenCalledWith(developer.id);
+      expect(mockDevRepository.getById).toHaveReturnedWith(developer);
+      expect(foundDeveloper).toMatchObject({ id: developer.id });
     });
 
     it('deveria retornar uma excessão devido ao valor enviado', async () => {
-      mockDevRepository.getById.mockReturnValue(null);
+      mockDevRepository.getById.mockReturnValue(null); // não existe um dev com esse id
       const pathId = 2;
+
       expect(developerService.findById(pathId)).rejects.toBeInstanceOf(
         NotFoundException,
       );
-      expect(mockDevRepository.getById).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -125,6 +127,10 @@ describe('DeveloperService', () => {
       const createDeveloper = await developerService.createDeveloper(
         DeveloperDTO,
       );
+      expect(mockDevRepository.createDeveloper).toHaveBeenCalledTimes(1);
+      expect(mockDevRepository.createDeveloper).toHaveReturnedWith(
+        DeveloperEntity,
+      );
       expect(createDeveloper).toMatchObject(DeveloperEntity);
     });
 
@@ -140,6 +146,9 @@ describe('DeveloperService', () => {
         expect(err).toMatchObject({
           message: 'entityWithArgumentsExists',
         });
+        expect(mockDevRepository.createDeveloper).toHaveBeenCalledTimes(0);
+        expect(mockDevRepository.createDeveloper).not.toHaveBeenCalled();
+        expect(mockDevRepository.createDeveloper).not.toHaveReturned();
       });
     });
 
@@ -180,6 +189,8 @@ describe('DeveloperService', () => {
         expect(err).toMatchObject({
           message: 'developerNotSave',
         });
+        expect(mockDevRepository.createDeveloper).toHaveBeenCalledTimes(1);
+        expect(mockDevRepository.createDeveloper).toHaveReturnedWith(null);
       });
     });
   });
@@ -205,6 +216,10 @@ describe('DeveloperService', () => {
         UpdatedDeveloperDto,
       );
       expect(updateDeveloper).toMatchObject(DeveloperEntity);
+      expect(mockDevRepository.updateDeveloper).toHaveBeenCalledTimes(1);
+      expect(mockDevRepository.updateDeveloper).toHaveReturnedWith(
+        DeveloperEntity,
+      );
     });
 
     it('chama o método "updateDeveloper" e retorna uma excessão do tipo NotFoundException(developerNotFound) devido ao dev não ser encontrado', async () => {
@@ -219,6 +234,8 @@ describe('DeveloperService', () => {
           expect(err).toMatchObject({
             message: 'developerNotFound',
           });
+          expect(mockDevRepository.updateDeveloper).not.toHaveBeenCalled();
+          expect(mockDevRepository.updateDeveloper).not.toHaveReturned();
         });
     });
     it('chama o método "updateDeveloper" e retorna uma excessão do tipo NotFoundException(technologyNotFound) devido a tecnologia não ser encontrada', async () => {
@@ -239,6 +256,8 @@ describe('DeveloperService', () => {
           expect(err).toMatchObject({
             message: 'technologyNotFound',
           });
+          expect(mockDevRepository.updateDeveloper).not.toHaveBeenCalled();
+          expect(mockDevRepository.updateDeveloper).not.toHaveReturned();
         });
     });
     it('chama o método "updateDeveloper" e retorna uma excessão do tipo BadRequestException(developerNotUpdate) devido a não conseguir upar o perfil do dev', async () => {
@@ -259,6 +278,7 @@ describe('DeveloperService', () => {
           expect(err).toMatchObject({
             message: 'developerNotUpdate',
           });
+          expect(mockDevRepository.updateDeveloper).toHaveBeenCalledTimes(1);
         });
     });
   });
