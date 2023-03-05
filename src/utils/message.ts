@@ -1,4 +1,4 @@
-const messages = {
+export const messages = {
   emailInvalid: 'E-mail com formato inválido',
   userNotFound: 'Usuário não encontrado',
   cityNotFound: 'Cidade não encontrada',
@@ -9,6 +9,9 @@ const messages = {
   countryNotUpdate: 'Não foi possível atualizar o país',
   FieldMustNotBeEmpty: 'O campo enviado não pode ser vazio',
   technologyNotFound: 'Tecnologia não encontrada',
+  developerNotFound: 'Desenvolvedor não encontrado',
+  developerNotSave: 'Não foi possível salvar o desenvolvedor',
+  developerNotUpdate: 'Não foi possível atualizar o desenvolvedor',
 };
 
 export interface responseHttpProps {

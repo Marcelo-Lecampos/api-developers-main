@@ -163,7 +163,7 @@ describe('DeveloperService', () => {
       });
     });
 
-    it('chama o método "createDeveloper" e por não conseguir salvar o desenvolvedor, retorna um erro', async () => {
+    it('chama o método "createDeveloper" e por não conseguir salvar o desenvolvedor no databse, retorna um erro', async () => {
       const DeveloperDTO = DeveloperStatic.developerDto();
       const DeveloperEntity = DeveloperStatic.developerData();
 
