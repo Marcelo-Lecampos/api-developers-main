@@ -78,6 +78,8 @@ const developerDocumentation = {
             statusCode: 404,
             message: messages.developerNotFound,
             error: 'Not Found',
+            timestamp: '2023-03-03T18:17:15.294Z',
+            path: '/developer/getDeveloperById/1',
           },
         },
       },
