@@ -1,4 +1,4 @@
-# Api-developers 🚀
+# Api-developers ✨
 
 Este projeto foi desenvolvido durante o programa devinHouse no módulo de testes no backend. Nosso desafio foi criar testes utilizando o jest para os services de Developers e fazer a documentação utilizando o Swagger do Developers.
 
@@ -12,8 +12,7 @@ Obs: Por estarem hospedados na tier gratuito do render, pode demorar alguns minu
 ## Tabela de Conteúdos
 
 - [🛠️ Tecnologias](##Tecnologias)
-- [🛒 Pré-requisitos](##Pré-requisitos)
-- [🚀 Configurando para uso](##Rodando_localmente)
+- [🚀 Rodando Localmente](##Rodando_Localmente)
 - [💡 Aprendizados](##Aprendizados)
 - [📝 Mensagem Final](##Mensagem_Final)
 - [🔒 Licença](##Licensas)
@@ -31,7 +30,7 @@ Obs: Por estarem hospedados na tier gratuito do render, pode demorar alguns minu
 ### Clone o projeto 📂
 
 ```bash
-  git clone https://link-para-o-projeto
+  git clone  https://github.com/Marcelo-Lecampos/api-developers-main.git
 ```
 
 ### Configurações para uso 🛠️
